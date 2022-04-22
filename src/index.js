@@ -4,7 +4,17 @@
  * @param {string} string
  * @returns {string}
  */
-export const replaceZAndVFromString = (string) => {};
+export const replaceZAndVFromString = (string) => {
+  let str = '';
+  for (const char of string) {
+    if (char.toLowerCase() !== 'z' && char.toLowerCase() !== 'v') {
+      str += char;
+    } else {
+      str += '*';
+    }
+  }
+  return str;
+};
 
 /**
  * Функция должна принять 3 аргумента и все строки. Мы передаем строку,
@@ -16,7 +26,10 @@ export const replaceZAndVFromString = (string) => {};
  * @param {string} newWord
  * @returns {string}
  */
-export const changeWord = (string, word, newWord) => {};
+export const changeWord = (string, word, newWord) => {
+  const position = string.indexOf(word);
+  return `${string.slice(0, position)}${newWord}${string.slice(position + word.length)}`;
+};
 
 /**
  * Должна вернуть строку(1 аргумент) на обрезанную по длине(2 аргумент, число)
@@ -24,7 +37,10 @@ export const changeWord = (string, word, newWord) => {};
  * @param {number} length
  * @returns {string}
  */
-export const truncate = (string, length) => {};
+export const truncate = (string, length) => {
+  console.log(string, length);
+  return string.slice(0, length);
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -37,7 +53,15 @@ export const truncate = (string, length) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbols = (string, symbol) => {};
+export const quantityOfSymbols = (string, symbol) => {
+  let num = 0;
+  for (const char of string) {
+    if (char.toLowerCase() === symbol.toLowerCase()) {
+      num++;
+    }
+  }
+  return num;
+};
 
 /**
  * Принимает строку в первом аргументе, и символ во втором
@@ -54,4 +78,22 @@ export const quantityOfSymbols = (string, symbol) => {};
  * @param {string} symbol
  * @returns {number}
  */
-export const quantityOfSymbolsWithIndexOf = (string, symbol) => {};
+export const quantityOfSymbolsWithIndexOf = (string, symbol) => {
+  let str = string.toLowerCase();
+  let sym = symbol.toLowerCase();
+  let position = 0;
+  let quantity = 0;
+  while (true) {
+    position = str.indexOf(sym, position);
+    if (position === -1) {
+      break;
+    }else {
+      quantity++;
+      position++;
+    }
+  }
+  return quantity;
+
+};
+
+
